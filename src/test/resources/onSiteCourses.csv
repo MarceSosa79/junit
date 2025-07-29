@@ -1,0 +1,5 @@
+title, duration, professor,room, quota, expectedInfo
+Redes,60,Maria Julia,402,30,"	[On Site] Redes 60 horas - Profesor: Maria Julia - Room: 402 Quota: 30"
+Java,140,Giuli,109,30,"	[On Site] Java 140 horas - Profesor: Giuli - Room: 109 Quota: 30"
+C++,120,Juanchi,221,30,"	[On Site] C++ 120 horas - Profesor: Juanchi - Room: 221 Quota: 30"
+Python,120,Mario,409,30,"	[On Site] Python 120 horas - Profesor: Mario - Room: 409 Quota: 30"

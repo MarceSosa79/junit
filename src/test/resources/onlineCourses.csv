@@ -1,0 +1,4 @@
+title, duration, professor, platform, expectedInfo
+Java,140,Giuli, Bios, [Online] Java 140 horas- Profesor: Giuli - Platforma: Bios
+Testing,60,Carmen Sandiego,Teams, [Online] Testing 60 horas - Profesor: Carmen Sandiego- Platforma: Teams
+Python,60,Juan Hernandez,Bios, [Online] Python 60 horas - Profesor: Juan Hernandez - Platforma: Bios
