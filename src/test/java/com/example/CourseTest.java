@@ -6,6 +6,8 @@ import org.junit.jupiter.params.provider.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.stream.Stream;
+
 public class CourseTest {
 
     private Course course;
@@ -32,16 +34,26 @@ public class CourseTest {
         course = null;
     }
 
+    //Nueva version con MethodSource
     @ParameterizedTest
-    @CsvFileSource(resources = "/courses.csv", numLinesToSkip = 1)
-    @DisplayName("Verificar valores del constructor con CSV")
-    void testConstructorWithCsv(String title, int duration, String professor) {
+    @MethodSource("courseDataFromCsv")
+    @DisplayName("Verificar valores del constructor con datos del CSV con MethodSource")
+    void testConstructorWithMethodSource(String title, int duration, String professor) {
         course = new Course(title, duration, professor);
         assertEquals(title, course.getTitle());
         assertEquals(duration, course.getDuration());
         assertEquals(professor, course.getProfessor());
     }
 
+    static Stream<Arguments> courseDataFromCsv() {
+        return Stream.of(
+            Arguments.of("Testing", 60, "Carlos Gutierrez"),
+            Arguments.of("Java", 140, "Hernesto Gonzalez"),
+            Arguments.of("Automation", 90, "Giuli")
+        );
+    }
+    @Order(1)
+    @Tag("smoke")
     @ParameterizedTest
     @CsvFileSource(resources = "/courses.csv", numLinesToSkip = 1)
     @DisplayName("Verificar profesor 'Unassigned' si no se pasa nombre")
@@ -51,6 +63,7 @@ public class CourseTest {
             assertEquals("Unassigned", course.getProfessor());
     }
 }
+    @Order(2)
     @Test
     @DisplayName("Método showInformation() contiene los datos esperados")
     void testShowInformationManual() {
@@ -60,5 +73,17 @@ public class CourseTest {
         assertTrue(info.contains("Testing"));
         assertTrue(info.contains("60"));
         assertTrue(info.contains("Ca"));
+    }
+    @Order(3)
+    @Tag("regression")
+    @ParameterizedTest
+    @NullAndEmptySource
+    @DisplayName("setTitle deberia lanzar excepcion si el titulo es nulo o vacio")
+    void testSetTitleWithNullOrEmpty(String invalidTitle) {
+        course = new Course("Inicial", 60, "Carlos Gutierrez");
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            course.setTitle(invalidTitle);
+        });
     }
 }

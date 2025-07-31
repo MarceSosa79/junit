@@ -32,7 +32,8 @@ public class OnSiteCourseTest {
         System.out.println("Limpieza OnSiteCourse.");
         course = null;
     }
-
+    
+    @Tag("smoke")
     @ParameterizedTest
     @CsvFileSource(resources = "/onSiteCourses.csv", numLinesToSkip = 1)
     @DisplayName("Room y Quota asignados desde CSV")

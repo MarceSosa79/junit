@@ -21,8 +21,12 @@ public class OnlineCourse extends Course {
     }
 
     public void setPlatform(String platform) {
+    if (platform == null || platform.trim().isEmpty()) {
+        this.platform = "Unassigned";
+    } else {
         this.platform = platform;
     }
+}
 
     // Sobrescribe metodo showInformation()
     @Override

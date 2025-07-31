@@ -7,14 +7,16 @@ public class Course {
 
     // Constructor con toda la data
     public Course(String title, int duration, String professor) {
-        this.title = title;
+        setTitle(title); 
         this.duration = (duration < 0) ? 0 : duration;
         this.professor = (professor == null || professor.isEmpty()) ? "Unassigned" : professor;
     }
+
     // Constructor solo con titulo y duracion
     public Course(String title, int duration) {
-        this.title = title;
+        setTitle(title); 
         this.duration = (duration < 0) ? 0 : duration;
+        this.professor = "Unassigned";
     }
 
     // Getters
@@ -32,6 +34,9 @@ public class Course {
 
     // Setters
     public void setTitle(String title) {
+        if (title == null || title.trim().isEmpty()) {
+            throw new IllegalArgumentException("El titulo no puede ser nulo o vacio");
+        }
         this.title = title;
     }
 
@@ -39,7 +44,6 @@ public class Course {
         this.professor = (professor == null || professor.isEmpty()) ? "Unassigned" : professor;
     }
 
-    
     public String showInformation() {
         return title + " (" + duration + " hs) - Professor: " + professor;
     }
